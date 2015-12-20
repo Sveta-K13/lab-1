@@ -1,0 +1,20 @@
+.idea
+.gradle
+*.iml
+.project
+.settings
+.classpath
+*.log
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Resource Files
+output.java
+FileWriterTest.java
+
+# Folders
+build/*
+target/*
