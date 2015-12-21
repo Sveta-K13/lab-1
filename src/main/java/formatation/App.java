@@ -17,8 +17,8 @@ public class App {
     public static void main(String[] args) throws IOException {
         System.out.print("Hello, world, yes it`s me");
         Formater formater = new Formater();
-        FileReader reader = new FileReader("src/test/resources/input3.txt");
-        FileWriter writer = new FileWriter("src/test/resources/output3.txt");
+        FileReader reader = new FileReader("src/main/resources/input.txt");
+        FileWriter writer = new FileWriter("src/main/resources/output.txt");
         formater.formate(reader, writer);
     }
 

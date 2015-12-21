@@ -13,9 +13,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FilenameUtils;
-
-
 /**
  * Created by Светлана on 20.12.2015.
  */
