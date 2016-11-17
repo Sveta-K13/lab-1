@@ -1,4 +1,4 @@
-package formatation.formater.waiter;
+package formatation.formater.handlers.waiter;
 
 public class WriteWaiter {
     private boolean worked = false;

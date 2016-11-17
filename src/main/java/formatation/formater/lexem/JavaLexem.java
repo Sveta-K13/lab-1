@@ -1,8 +1,9 @@
-package formatation.formater.context.lexem;
+package formatation.formater.lexem;
 
-import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import formatation.reader.IReader;
 
 import java.io.IOException;
@@ -14,35 +15,24 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Created by Светлана on 25.12.2015.
  */
-public class StringLexem implements ILexem {
+public class JavaLexem implements ILexem {
     private List<String> dictionary;
-    private IReader reader;
 
-    public StringLexem(String Lexems, char separator) {
+    public JavaLexem(String Lexems, char separator) {
         dictionary = Splitter.on(separator).splitToList(Lexems);
     }
+    public JavaLexem() { //default
+        dictionary = Splitter.on(',').splitToList("{,},;, ,\t,\n");
+    }
 
-    public String readPartion() throws IOException {
-        String TextPart = "";
-        int likeLexemCount = 0;
-        List<String> dictionaryFiltered = new ArrayList(dictionary);
-        do {
-            TextPart += reader.read();
-//             dictionaryFiltered = Collections2.filter(dictionary, new Predicate <String> {
-//                @Override
-//                public boolean apply(String input) {
-//                    return true;
-//                }
-//            });
-            //likeLexemCount = //кол-во элементов массива
-        }
-        while  ( likeLexemCount > 2 );
-        return  TextPart;
-
+    public List<String> samePartion(String part) {
+        List<String> filteredList = Lists.newArrayList(Collections2.filter(
+                dictionary, Predicates.containsPattern(part)));
+        return filteredList;
     }
 
     public Boolean isLexem( String part) {
-        return true; //part in dictionary   ?
+        return true; //// TODO:
     }
 
 }

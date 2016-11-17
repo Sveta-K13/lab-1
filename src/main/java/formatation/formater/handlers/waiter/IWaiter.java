@@ -1,4 +1,4 @@
-package formatation.formater.waiter;
+package formatation.formater.handlers.waiter;
 
 /**
  * Created by Светлана on 21.12.2015.

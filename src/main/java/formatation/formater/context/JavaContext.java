@@ -1,42 +1,34 @@
 package formatation.formater.context;
 
-import formatation.formater.context.lexem.ILexem;
+import formatation.formater.lexem.ILexem;
+import formatation.formater.lexem.JavaLexem;
 
 /**
  * Created by Светлана on 28.12.2015.
  */
 public class JavaContext implements IContext {
-    private ILexem currentLexem;
+    private char readedSymbol;
     private String formatterString = "";
-    private int nestingLevel;
+    private int nestingLevel = 0;
+    private ILexem lexemFinder;
 
-    @Override
-    public ILexem getCurrentLexem() {
-        return currentLexem;
-    };
-
-    @Override
-    public String getFormattedString() {
-        return formatterString;
+    public JavaContext() {
+        lexemFinder = new JavaLexem();
     }
 
     @Override
+    public String getFormattedString() {
+        String result = formatterString;
+        formatterString = "";
+        return result;
+    }
+    @Override
+    public void setCurrentSymbol(char currentSymbol) {
+        readedSymbol = currentSymbol;
+    };
+
+    public ILexem getLexemFinder(){return lexemFinder;}
     public int getNestingLevel() {
         return nestingLevel;
-    };
-
-    @Override
-    public void setCurrentLexem(ILexem currentLexem) {
-
-    };
-
-    @Override
-    public void setFormattedString(String formattedString) {
-
-    };
-
-    @Override
-    public void setNestingLevel(int nestingLevel) {
-
     };
 }

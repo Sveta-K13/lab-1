@@ -1,4 +1,4 @@
-package formatation.formater.waiter;
+package formatation.formater.handlers.waiter;
 
 public class CleanWaiter implements IWaiter {
     private boolean worked = false;
