@@ -1,26 +1,34 @@
 package formatation.formater;
 
-import formatation.formater.context.IContext;
-import formatation.formater.context.factory.IContextFactory;
+import formatation.formater.command.ICommand;
+import formatation.formater.handler.IHandler;
+import formatation.formater.state.IState;
 import formatation.reader.IReader;
 import formatation.writer.IWriter;
 
 import java.io.IOException;
 
 public class Formater implements IFormater {
-    private IContextFactory contextFactory;
-
-    public Formater(final IContextFactory contextFactory) {
-        this.contextFactory = contextFactory; //init lang (rules)
+    private IState state;
+    private ICommand command;
+    public Formater(ICommand cmd, IState state) {
+        this.state = state;
+        this.command = cmd;
     }
 
+    //todo setters for state, commands
     public void formate(IReader reader, IWriter writer) throws IOException { // TODO: posibility setup init nestingLevel
-        final IContext context = contextFactory.getContext();
+        int currentState;
+        IHandler currentHandler;
+        char currentSymbol;
+        currentState = state.getInitState();
+
         while (reader.hasNext()) {
-            context.setCurrentSymbol(reader.read());
-            writer.write(context.getFormattedString());
+            currentSymbol = reader.read();
+            currentHandler = command.getHandler(currentSymbol, currentState);
+            currentHandler.handle();
+            currentState = state.changeState(currentSymbol, currentState);
         }
-        writer.write(context.getFormattedString());
         writer.close();
     }
 }
