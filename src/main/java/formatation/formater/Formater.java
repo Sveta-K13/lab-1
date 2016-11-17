@@ -1,6 +1,6 @@
 package formatation.formater;
 
-import formatation.formater.command.ICommand;
+import formatation.formater.command.IHandlerFactory;
 import formatation.formater.handler.IHandler;
 import formatation.formater.state.IState;
 import formatation.reader.IReader;
@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class Formater implements IFormater {
     private IState state;
-    private ICommand command;
-    public Formater(ICommand cmd, IState state) {
+    private IHandlerFactory command;
+    public Formater(IHandlerFactory cmd, IState state) {
         this.state = state;
         this.command = cmd;
     }

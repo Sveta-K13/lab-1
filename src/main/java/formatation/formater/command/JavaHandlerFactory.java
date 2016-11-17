@@ -8,10 +8,10 @@ import java.util.Map;
 /**
  * Created by s.krivosheeva on 17.11.2016.
  */
-public class JavaCommand implements ICommand{
+public class JavaHandlerFactory implements IHandlerFactory {
     Map<Pair<Character, Integer>, IHandler> commandMap;
 
-    public JavaCommand(Map<Pair<Character, Integer>, IHandler> initMap) {
+    public JavaHandlerFactory(Map<Pair<Character, Integer>, IHandler> initMap) {
         commandMap = initMap;
     }
 
