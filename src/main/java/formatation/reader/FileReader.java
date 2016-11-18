@@ -14,7 +14,7 @@ public class FileReader implements IReader {
 //    private Character nextCharacter;
     private boolean isReaderClosed = false;
 
-    public FileReader(final String fileName) throws IOException {
+    public FileReader(final String fileName) throws ReaderException {
         if (fileName == null) {
             throw new ReaderException("File name can't be null");
         }

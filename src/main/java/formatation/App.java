@@ -25,7 +25,7 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws FormaterException {
         System.out.print("Hello, world, yes it`s me");
         FileReader readerConfig = new FileReader("src/main/resources/config.txt");
         IConfigParser parser = new ConfigParser();
