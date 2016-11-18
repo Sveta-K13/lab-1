@@ -1,26 +1,18 @@
 package formatation.formater.state;
 
-import javafx.util.Pair;
-
-import java.util.Map;
-
 /**
- * Created by s.krivosheeva on 17.11.2016.
+ * Created by s.krivosheeva on 18.11.2016.
  */
-public class State implements  IState{
-    Map<Pair<Character, Integer>, Integer> stateMap;
+public class State implements IState {
 
-    public State(Map<Pair<Character, Integer>, Integer> initMap) {
-        stateMap = initMap;
+    private int state;
+
+    public State(){
+        state = 0;
     }
 
     @Override
-    public int getInitState() {
-        return 1;
-    }
+    public void setState() {
 
-    @Override
-    public int changeState(char symbol, int currentState) {
-        return stateMap.get(new Pair<Character, Integer>(symbol,currentState));
     }
 }
