@@ -8,8 +8,6 @@ import formatation.formater.stateFactory.IStateFactory;
 import formatation.reader.IReader;
 import formatation.writer.IWriter;
 
-import java.io.IOException;
-
 public class Formater implements IFormater {
     private IStateFactory state;
     private IHandlerFactory command;
@@ -19,7 +17,7 @@ public class Formater implements IFormater {
     }
 
     //todo setters for stateFactory, commands
-    public void formate(IReader reader, IWriter writer) throws IOException { // TODO: posibility setup init nestingLevel
+    public void formate(IReader reader, IWriter writer) throws FormaterException { // TODO: posibility setup init nestingLevel
         IState currentState;
         IHandler currentHandler;
         char currentSymbol;

@@ -6,5 +6,5 @@ import formatation.formater.config.IConfig;
  * Created by s.krivosheeva on 18.11.2016.
  */
 public interface IStarter {
-    public boolean isValidateConfig(IConfig tested);
+    public void checkStartAvailible(IConfig tested) throws StarterException;
 }
