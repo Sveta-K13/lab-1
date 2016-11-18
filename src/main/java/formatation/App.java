@@ -1,8 +1,17 @@
 package formatation;
 
 import formatation.formater.Formater;
-import formatation.formater.context.factory.IContextFactory;
-import formatation.formater.context.factory.JavaContextFactory;
+import formatation.formater.FormaterException;
+import formatation.formater.command.IHandlerFactory;
+import formatation.formater.command.JavaHandlerFactory;
+import formatation.formater.config.IConfig;
+import formatation.formater.config.configParser.ConfigParser;
+import formatation.formater.config.configParser.IConfigParser;
+import formatation.formater.starter.IStarter;
+import formatation.formater.starter.FormaterStarter;
+import formatation.formater.starter.StarterException;
+import formatation.formater.stateFactory.IStateFactory;
+import formatation.formater.stateFactory.StateFactory;
 import formatation.reader.FileReader;
 import formatation.writer.FileWriter;
 
@@ -18,12 +27,29 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) throws IOException {
         System.out.print("Hello, world, yes it`s me");
+        FileReader readerConfig = new FileReader("src/main/resources/config.txt");
+        IConfigParser parser = new ConfigParser();
+        IStarter starter = new FormaterStarter();
+        try {
+            IConfig config = parser.createConfig(readerConfig);
+            try {
+                starter.checkStartAvailible(config);
+            }catch (StarterException ex) {
+                throw new FormaterException("Can't start, wrong config", ex);
+            }
 
-        IContextFactory contextFactory = new JavaContextFactory();
-        Formater formater = new Formater(contextFactory);
-        FileReader reader = new FileReader("src/main/resources/input.txt");
-        FileWriter writer = new FileWriter("src/main/resources/output.txt");
+            IHandlerFactory contextFactory = new JavaHandlerFactory(config.getHandlersMap());
+            IStateFactory stateFactory = new StateFactory(config.getStatesMap());
+            Formater formater = new Formater(contextFactory, stateFactory);
+            FileReader reader = new FileReader("src/main/resources/input.txt");
+            FileWriter writer = new FileWriter("src/main/resources/output.txt");
 
-        formater.formate(reader, writer);
+            formater.formate(reader, writer);
+
+
+        } catch (FormaterException ex) {
+            throw new FormaterException("Something wrong", ex);
+        }
+
     }
 }
