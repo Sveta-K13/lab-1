@@ -9,7 +9,7 @@ import formatation.reader.ReaderException;
  */
 public class ConfigParser implements IConfigParser {
     @Override
-    public IConfig createConfig(IReader reader) throws ReaderException {
+    public IConfig createConfig(IReader reader) throws ConfigParserException {
         return null;
     }
 }
